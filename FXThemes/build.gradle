@@ -1,0 +1,134 @@
+plugins {
+    id 'signing'
+    id "java-library"
+    id "maven-publish"
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+
+version = '1.0.0'
+
+//ext {
+//    projectDescription = 'A collection of new controls for JavaFX.'
+//
+//    licenseName = 'GNU General Public License, version 2, with the Classpath Exception'
+//    licenseURL = 'https://openjdk.java.net/legal/gplv2+ce.html'
+//
+//    versionControlOriginURL = 'https://github.com/dukke/FXComponents.git'
+//    issueTrackerURL = 'https://github.com/dukke/FXComponents/issues'
+//
+//    projectURL = 'https://pixelduke.com/fxcomponents/'
+//}
+
+/* ------- */
+
+javafx {
+    version = "20.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.java.dev.jna:jna:5.13.0'
+    implementation 'net.java.dev.jna:jna-platform:5.13.0'
+}
+
+jar {
+    manifest {
+        attributes( 'Implementation-Title':     project.name,
+                'Implementation-Version':   project.version)
+    }
+}
+
+javadoc {
+    options.addStringOption('javafx', '-quiet')
+}
+
+task javadocJar(type: Jar) {
+    getArchiveClassifier().set('javadoc')
+    from javadoc
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier.set("sources")
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
+/* Publishing */
+/* - for publishing to maven central need to define MAVEN_USERNAME and MAVEN_PASSWORD as environment variables */
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url version.toString().endsWith("SNAPSHOT")? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username System.getenv('MAVEN_USERNAME')
+                password System.getenv('MAVEN_PASSWORD')
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description projectDescription
+
+            name project.name
+            url projectURL
+            issueManagement {
+                system 'GitHub'
+                url issueTrackerURL
+            }
+            licenses {
+                license {
+                    name licenseName
+                    url licenseURL
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url versionControlOriginURL
+            }
+            developers {
+                developer {
+                    name 'Pedro Duque Vieira'
+                }
+            }
+        }
+    }
+}

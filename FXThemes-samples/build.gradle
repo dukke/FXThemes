@@ -1,0 +1,40 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+javafx {
+    version = "20.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.web', 'javafx.graphics' ]
+}
+
+application {
+    applicationDefaultJvmArgs =  [
+            // -------- For getting the native window handle (WindowUtils.getNativeHandleForStage method) -----------------
+            "--add-opens=javafx.graphics/javafx.stage=com.pixelduke.fxthemes"
+            ,"--add-exports=javafx.graphics/com.sun.javafx.tk.quantum=com.pixelduke.fxthemes"
+
+            // -------- So that changing the background of a native Window works well -------------------------------------
+            ,"-Dprism.forceUploadingPainter=true"
+    ]
+
+    mainModule = "com.pixelduke.samples.fxthemes"
+
+//    mainClassName = 'com.pixelduke.samples.window.DarkThemeSample'
+//    mainClassName = 'com.pixelduke.samples.window.ChangeWindowColorsSample'
+    mainClassName = 'com.pixelduke.samples.window.WindowBackdropSample'
+
+}
+
+dependencies {
+    implementation project(':fxthemes')
+
+    implementation 'com.pixelduke:transit:1.0.0'
+}
+
+repositories {
+    mavenCentral()
+//    flatDir {
+//        dirs '../lib'
+//    }
+}
