@@ -23,7 +23,7 @@ public class WindowBackdropSample extends Application {
     @Override
     public void start(Stage primaryStage) {
         Win11ThemeWindowManager win11ThemeWindowManager = (Win11ThemeWindowManager) ThemeWindowManagerFactory.create();
-//        System.setProperty("prism.forceUploadingPainter", "true");    DOESNT SEEM TO WORK
+//        System.setProperty("prism.forceUploadingPainter", "true");    DOESN'T SEEM TO WORK
 
         System.out.println("OS : " + System.getProperty("os.name"));
 

@@ -6,7 +6,7 @@ Utility classes for advanced Theme development for JavaFX (Java)
 ![Changing Window Frame colors](WindowFrameColors.jpg)
 
 ## Documentation
-Documentation of FXThemes can be found in this link: <.......>
+Documentation of FXThemes can be found in this link: [FXThemes documentation](https://pixelduke.com/fxthemes/).
 You should check it if you want to know more about this library.
 
 ## How to get it
