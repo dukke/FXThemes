@@ -9,22 +9,22 @@ sourceCompatibility = JavaVersion.VERSION_17
 
 version = '1.0.0'
 
-//ext {
-//    projectDescription = 'A collection of new controls for JavaFX.'
-//
-//    licenseName = 'GNU General Public License, version 2, with the Classpath Exception'
-//    licenseURL = 'https://openjdk.java.net/legal/gplv2+ce.html'
-//
-//    versionControlOriginURL = 'https://github.com/dukke/FXComponents.git'
-//    issueTrackerURL = 'https://github.com/dukke/FXComponents/issues'
-//
-//    projectURL = 'https://pixelduke.com/fxcomponents/'
-//}
+ext {
+    projectDescription = 'This is a library that contains classes to help in theme development.'
+
+    licenseName = 'GNU General Public License, version 2, with the Classpath Exception'
+    licenseURL = 'https://openjdk.java.net/legal/gplv2+ce.html'
+
+    versionControlOriginURL = 'https://github.com/dukke/FXThemes.git'
+    issueTrackerURL = 'https://github.com/dukke/FXThemes/issues'
+
+    projectURL = 'https://pixelduke.com/fxthemes/'
+}
 
 /* ------- */
 
 javafx {
-    version = "20.0.2"
+    version = "21"
     modules = [ 'javafx.controls' ]
 }
 
