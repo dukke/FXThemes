@@ -77,43 +77,6 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
         }
     }
 
-//    public void setNormalFrame(Window window) {
-//        DwmSupport.INSTANCE.DwmSetWindowAttribute(
-//                WindowUtils.getNativeHandleForStage(window),
-//                DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
-//                new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.NONE.getValue())),
-//                WinDef.DWORD.SIZE
-//        );
-//    }
-//
-//    public void setMicaFrame(Window window) {
-//        DwmSupport.INSTANCE.DwmSetWindowAttribute(
-//                WindowUtils.getNativeHandleForStage(window),
-//                DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
-//                new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.MICA.getValue())),
-//                WinDef.DWORD.SIZE
-//        );
-//    }
-//
-//    public void setMicaAltFrame(Window window) {
-//        DwmSupport.INSTANCE.DwmSetWindowAttribute(
-//                WindowUtils.getNativeHandleForStage(window),
-//                DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
-//                new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.MICA_ALT.getValue())),
-//                WinDef.DWORD.SIZE
-//        );
-//    }
-//
-//    public void setAcrylicFrame(Window window) {
-//        DwmSupport.INSTANCE.DwmSetWindowAttribute(
-//                WindowUtils.getNativeHandleForStage(window),
-//                DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
-//                new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.ACRYLIC.getValue())),
-//                WinDef.DWORD.SIZE
-//        );
-//    }
-
-
     private int toRGBInt(final Color color) {
         return (doubleTo8Bit(color.getBlue()) << 16)
                 | (doubleTo8Bit(color.getGreen()) << 8)

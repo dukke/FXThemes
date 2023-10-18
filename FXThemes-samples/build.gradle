@@ -20,9 +20,9 @@ application {
 
     mainModule = "com.pixelduke.samples.fxthemes"
 
-//    mainClassName = 'com.pixelduke.samples.window.DarkThemeSample'
+    mainClassName = 'com.pixelduke.samples.window.DarkThemeSample'
 //    mainClassName = 'com.pixelduke.samples.window.ChangeWindowColorsSample'
-    mainClassName = 'com.pixelduke.samples.window.WindowBackdropSample'
+//    mainClassName = 'com.pixelduke.samples.window.WindowBackdropSample'
 
 }
 
