@@ -6,4 +6,6 @@ module com.pixelduke.fxthemes {
     requires com.sun.jna.platform;
 
     exports com.pixelduke.window;
+
+    exports impl.com.pixelduke.window.win32.windows10 to com.sun.jna;
 }

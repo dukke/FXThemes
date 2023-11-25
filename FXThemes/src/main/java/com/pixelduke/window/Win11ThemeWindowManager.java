@@ -1,10 +1,10 @@
 package com.pixelduke.window;
 
 import com.sun.jna.platform.win32.WinDef;
-import impl.com.pixelduke.window.win32.DWM;
-import impl.com.pixelduke.window.win32.DWMA_WINDOW_ATTRIBUTE;
-import impl.com.pixelduke.window.win32.DWM_SYSTEMBACKDROP_TYPE;
-import impl.com.pixelduke.window.win32.DwmSupport;
+import impl.com.pixelduke.window.win32.windows11.DWM;
+import impl.com.pixelduke.window.win32.windows11.DWMA_WINDOW_ATTRIBUTE;
+import impl.com.pixelduke.window.win32.windows11.DWM_SYSTEMBACKDROP_TYPE;
+import impl.com.pixelduke.window.win32.windows11.DwmSupport;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
 

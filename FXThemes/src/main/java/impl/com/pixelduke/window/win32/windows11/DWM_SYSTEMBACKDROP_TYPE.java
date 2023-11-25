@@ -1,4 +1,4 @@
-package impl.com.pixelduke.window.win32;
+package impl.com.pixelduke.window.win32.windows11;
 
 public enum DWM_SYSTEMBACKDROP_TYPE {
     NONE(1),

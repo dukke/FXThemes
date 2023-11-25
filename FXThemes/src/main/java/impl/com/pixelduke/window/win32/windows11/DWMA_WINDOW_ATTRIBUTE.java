@@ -1,4 +1,4 @@
-package impl.com.pixelduke.window.win32;
+package impl.com.pixelduke.window.win32.windows11;
 
 public enum DWMA_WINDOW_ATTRIBUTE {
     DWMWA_USE_IMMERSIVE_DARK_MODE(20),

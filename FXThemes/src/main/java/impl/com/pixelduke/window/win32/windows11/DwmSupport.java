@@ -1,4 +1,4 @@
-package impl.com.pixelduke.window.win32;
+package impl.com.pixelduke.window.win32.windows11;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

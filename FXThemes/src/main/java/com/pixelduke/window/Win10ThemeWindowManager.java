@@ -4,12 +4,14 @@ import com.sun.jna.*;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinNT;
+import impl.com.pixelduke.window.win32.windows10.WindowCompositionAttributeData;
 import javafx.stage.Window;
 
-import java.util.Arrays;
-import java.util.List;
+import static impl.com.pixelduke.window.win32.windows10.WindowCompositionAttribute.WCA_ACCENT_POLICY;
+import static impl.com.pixelduke.window.win32.windows10.WindowCompositionAttribute.WCA_USEDARKMODECOLORS;
 
 public class Win10ThemeWindowManager implements ThemeWindowManager {
+    private Function setWindowCompositionAttribute;
 
 //    interface UXThemeSupport extends Library {
 //        UXThemeSupport INSTANCE = Native.load("uxtheme", UXThemeSupport.class);
@@ -36,59 +38,14 @@ public class Win10ThemeWindowManager implements ThemeWindowManager {
 //        );
 //    }
 
-    public static class WindowCompositionAttributeData extends Structure implements Structure.ByReference {
-        public int Attribute;
-        public Pointer Data;
-        public int SizeOfData;
-
-        @Override
-        protected List<String> getFieldOrder() {
-            return Arrays.asList("Attribute", "Data", "SizeOfData");
-        }
+    public Win10ThemeWindowManager() {
+        NativeLibrary user32 = NativeLibrary.getInstance("user32");
+        setWindowCompositionAttribute = user32.getFunction("SetWindowCompositionAttribute");
     }
 
     public void setDarkModeForWindowFrame(Window window, boolean darkMode) {
 //        _AllowDarkModeForWindow(hDlg, g_darkModeEnabled);
 //        RefreshTitleBarThemeColor(hDlg);
-
-//        struct WINDOWCOMPOSITIONATTRIBDATA
-//        {
-//            WINDOWCOMPOSITIONATTRIB Attrib;
-//            PVOID pvData;
-//            SIZE_T cbData;
-//        };
-
-//        enum WINDOWCOMPOSITIONATTRIB
-//        {
-//            WCA_UNDEFINED = 0,
-//            WCA_NCRENDERING_ENABLED = 1,
-//            WCA_NCRENDERING_POLICY = 2,
-//            WCA_TRANSITIONS_FORCEDISABLED = 3,
-//            WCA_ALLOW_NCPAINT = 4,
-//            WCA_CAPTION_BUTTON_BOUNDS = 5,
-//            WCA_NONCLIENT_RTL_LAYOUT = 6,
-//            WCA_FORCE_ICONIC_REPRESENTATION = 7,
-//            WCA_EXTENDED_FRAME_BOUNDS = 8,
-//            WCA_HAS_ICONIC_BITMAP = 9,
-//            WCA_THEME_ATTRIBUTES = 10,
-//            WCA_NCRENDERING_EXILED = 11,
-//            WCA_NCADORNMENTINFO = 12,
-//            WCA_EXCLUDED_FROM_LIVEPREVIEW = 13,
-//            WCA_VIDEO_OVERLAY_ACTIVE = 14,
-//            WCA_FORCE_ACTIVEWINDOW_APPEARANCE = 15,
-//            WCA_DISALLOW_PEEK = 16,
-//            WCA_CLOAK = 17,
-//            WCA_CLOAKED = 18,
-//            WCA_ACCENT_POLICY = 19,
-//            WCA_FREEZE_REPRESENTATION = 20,
-//            WCA_EVER_UNCLOAKED = 21,
-//            WCA_VISUAL_OWNER = 22,
-//            WCA_HOLOGRAPHIC = 23,
-//            WCA_EXCLUDED_FROM_DDA = 24,
-//            WCA_PASSIVEUPDATEMODE = 25,
-//            WCA_USEDARKMODECOLORS = 26,
-//            WCA_LAST = 27
-//        };
 
         // AllowDarkModeForWindow
         WinDef.HMODULE hModule = com.sun.jna.platform.win32.Kernel32.INSTANCE.GetModuleHandle("uxtheme.dll");
@@ -101,16 +58,13 @@ public class Win10ThemeWindowManager implements ThemeWindowManager {
         // SetWindowCompositionAttribute
         //        WINDOWCOMPOSITIONATTRIBDATA data = { WCA_USEDARKMODECOLORS, &dark, sizeof(dark) };
         //        _SetWindowCompositionAttribute(hWnd, &data);
-        int WCA_USEDARKMODECOLORS = 26;
 
         WindowCompositionAttributeData data = new WindowCompositionAttributeData();
-        data.Attribute = WCA_USEDARKMODECOLORS;
+        data.Attribute = WCA_USEDARKMODECOLORS.getValue();
         data.Data = new WinDef.BOOLByReference(new WinDef.BOOL(darkMode)).getPointer();
         data.SizeOfData = WinDef.BOOL.SIZE;
 
-        NativeLibrary user32 = NativeLibrary.getInstance("user32");
-        Function setWindowCompositionAttribute = user32.getFunction("SetWindowCompositionAttribute");
-        setWindowCompositionAttribute.invoke(WinNT.HRESULT.class, new Object[] { WindowUtils.getNativeHandleOfStage(window), data });
+        setWindowCompositionAttribute(window, data);
 
 //        // Update Window (DOESN'T SEEM TO BE WORKING)
 //        WinUserSupport.INSTANCE.UpdateWindow(WindowUtils.getNativeHandleOfStage(window));
@@ -141,4 +95,27 @@ public class Win10ThemeWindowManager implements ThemeWindowManager {
         }
     }
 
+//    public static void enableAcrylic(Window window, int opacity, int background) {
+//        WinDef.HWND hwnd = WindowUtils.getNativeHandleOfStage(window);
+//
+//        AccentPolicy policy = new AccentPolicy();
+//        policy.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
+//        policy.GradientColor = (opacity << 24) | (background & 0xFFFFFF);
+//        policy.write();
+//
+//        WindowCompositionAttributeData data = new WindowCompositionAttributeData();
+//        data.Attribute = WCA_ACCENT_POLICY.getValue();
+//        data.Data = policy.getPointer();
+//        data.SizeOfData = policy.size();
+//        data.write();
+//
+//        boolean success = SAUser32.INSTANCE.SetWindowCompositionAttribute(hwnd, data.getPointer());
+//        if(!success) {
+//            System.out.print("Failed to set acrylic: native error " +  Native.getLastError());
+//        }
+//    }
+
+    private void setWindowCompositionAttribute(Window window, WindowCompositionAttributeData data) {
+        setWindowCompositionAttribute.invoke(WinNT.HRESULT.class, new Object[] { WindowUtils.getNativeHandleOfStage(window), data });
+    }
 }
