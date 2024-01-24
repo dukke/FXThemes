@@ -10,19 +10,23 @@ javafx {
 
 application {
     applicationDefaultJvmArgs =  [
-            // -------- For getting the native window handle (WindowUtils.getNativeHandleForStage method) -----------------
+            // - For getting the native window handle (WindowUtils.getNativeHandleForStage method) ---------------------
             "--add-opens=javafx.graphics/javafx.stage=com.pixelduke.fxthemes"
             ,"--add-exports=javafx.graphics/com.sun.javafx.tk.quantum=com.pixelduke.fxthemes"
 
-            // -------- So that changing the background of a native Window works well -------------------------------------
+            // - So that changing the background of a native Window works well (at least on some machines using win11) -
             ,"-Dprism.forceUploadingPainter=true"
+//            ,"-Dprism.order=sw"
+//            ,"-Dprism.dirtyopts=false"
+//            ,"-Dprism.forceAlphaTestShader=true"
     ]
 
     mainModule = "com.pixelduke.samples.fxthemes"
 
-    mainClassName = 'com.pixelduke.samples.window.DarkThemeSample'
+    mainClassName = 'com.pixelduke.samples.window.Windows10BackdropSample'
+//    mainClassName = 'com.pixelduke.samples.window.DarkThemeSample'
 //    mainClassName = 'com.pixelduke.samples.window.ChangeWindowColorsSample'
-//    mainClassName = 'com.pixelduke.samples.window.WindowBackdropSample'
+//    mainClassName = 'com.pixelduke.samples.window.Windows11BackdropSample'
 
 }
 

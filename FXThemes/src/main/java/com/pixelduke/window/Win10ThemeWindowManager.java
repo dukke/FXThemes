@@ -4,9 +4,11 @@ import com.sun.jna.*;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinNT;
+import impl.com.pixelduke.window.win32.windows10.AccentPolicy;
 import impl.com.pixelduke.window.win32.windows10.WindowCompositionAttributeData;
 import javafx.stage.Window;
 
+import static impl.com.pixelduke.window.win32.windows10.AccentState.*;
 import static impl.com.pixelduke.window.win32.windows10.WindowCompositionAttribute.WCA_ACCENT_POLICY;
 import static impl.com.pixelduke.window.win32.windows10.WindowCompositionAttribute.WCA_USEDARKMODECOLORS;
 
@@ -95,27 +97,26 @@ public class Win10ThemeWindowManager implements ThemeWindowManager {
         }
     }
 
-//    public static void enableAcrylic(Window window, int opacity, int background) {
-//        WinDef.HWND hwnd = WindowUtils.getNativeHandleOfStage(window);
-//
-//        AccentPolicy policy = new AccentPolicy();
-//        policy.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
-//        policy.GradientColor = (opacity << 24) | (background & 0xFFFFFF);
-//        policy.write();
-//
-//        WindowCompositionAttributeData data = new WindowCompositionAttributeData();
-//        data.Attribute = WCA_ACCENT_POLICY.getValue();
-//        data.Data = policy.getPointer();
-//        data.SizeOfData = policy.size();
-//        data.write();
-//
+    public void enableAcrylic(Window window, int opacity, int background) {
+        AccentPolicy policy = new AccentPolicy();
+        policy.AccentState = ACCENT_ENABLE_BLURBEHIND.getValue();
+        policy.GradientColor = (opacity << 24) | (background & 0xFFFFFF);
+        policy.write();
+
+        WindowCompositionAttributeData data = new WindowCompositionAttributeData();
+        data.Attribute = WCA_ACCENT_POLICY.getValue();
+        data.Data = policy.getPointer();
+        data.SizeOfData = policy.size();
+        data.write();
+
 //        boolean success = SAUser32.INSTANCE.SetWindowCompositionAttribute(hwnd, data.getPointer());
 //        if(!success) {
 //            System.out.print("Failed to set acrylic: native error " +  Native.getLastError());
 //        }
-//    }
+        WinNT.HRESULT result = setWindowCompositionAttribute(window, data);
+    }
 
-    private void setWindowCompositionAttribute(Window window, WindowCompositionAttributeData data) {
-        setWindowCompositionAttribute.invoke(WinNT.HRESULT.class, new Object[] { WindowUtils.getNativeHandleOfStage(window), data });
+    private WinNT.HRESULT setWindowCompositionAttribute(Window window, WindowCompositionAttributeData data) {
+        return (WinNT.HRESULT) setWindowCompositionAttribute.invoke(WinNT.HRESULT.class, new Object[] { WindowUtils.getNativeHandleOfStage(window), data });
     }
 }
