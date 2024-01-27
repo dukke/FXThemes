@@ -1,3 +1,0 @@
-allprojects {
-    group = 'com.pixelduke'
-}

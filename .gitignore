@@ -19,14 +19,26 @@ scenicView.properties
 .idea/
 *.iml
 out/
+*.iws
 
 # Gradle
 !gradle-wrapper.jar
 .gradle/
 .nb-gradle/
 build/
-# Ignore Gradle project-specific cache directory
+# - ignore Gradle project-specific cache directory
 .gradle
-
-# Ignore Gradle build output directory
+# - ignore Gradle build output directory
 build
+
+# Maven
+log/
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Mac
+.DS_Store
