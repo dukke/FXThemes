@@ -23,6 +23,58 @@
     <system>GitHub</system>
     <url>https://github.com/dukke/FXThemes/issues</url>
   </issueManagement>
+
+  <profiles>
+    <!-- MacOS X compiling step -->
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <xcodeScheme>Debug</xcodeScheme>
+        <my.property>running.on.mac</my.property>
+      </properties>
+      <build>
+        <plugins>
+          <!-- native MacOS Objective-C build -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>xcodebuild</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>xcodebuild</executable>
+              <arguments>
+                <argument>-scheme</argument>
+                <argument>FXThemes</argument>
+                <argument>-configuration</argument>
+                <argument>${xcodeScheme}</argument>
+                <argument>CONFIGURATION_BUILD_DIR=${project.build.outputDirectory}</argument>
+                <argument>build</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <xcodeScheme>Debug</xcodeScheme>
+  </properties>
+
   <licenses>
     <license>
       <name>GNU General Public License, version 2, with the Classpath Exception</name>
@@ -38,6 +90,9 @@
   <developers>
     <developer>
       <name>Pedro Duque Vieira</name>
+    </developer>
+    <developer>
+      <name>Carl Dea</name>
     </developer>
   </developers>
 
@@ -55,6 +110,21 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.3.0</version>
+      </plugin>
+      <!-- display active profile in compile phase -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-help-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>show-profiles</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>active-profiles</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

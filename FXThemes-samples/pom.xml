@@ -17,48 +17,47 @@
   <artifactId>fxthemes-samples</artifactId>
   <version>1.2.0</version>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <os-classifier>win</os-classifier>
+    <forceUploadingPainter>true</forceUploadingPainter>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-base</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-swing</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-web</artifactId>
       <version>20.0.2</version>
-      <classifier>win</classifier>
     </dependency>
     <dependency>
       <groupId>com.pixelduke</groupId>
@@ -71,6 +70,56 @@
       <version>1.0.0</version>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <!-- MacOS X compiling step -->
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <xcodeScheme>Debug</xcodeScheme>
+        <my.property>running.on.mac</my.property>
+        <forceUploadingPainter>false</forceUploadingPainter>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <executions>
+              <execution>
+                <!-- Default configuration for running with: mvn clean javafx:run -->
+                <id>default-cli</id>
+                <configuration>
+                  <mainClass>com.pixelduke.samples.window.DarkThemeSampleMac</mainClass>
+                  <launcher>app</launcher>
+                  <jlinkZipName>app</jlinkZipName>
+                  <jlinkImageName>app</jlinkImageName>
+                  <noManPages>true</noManPages>
+                  <stripDebug>true</stripDebug>
+                  <noHeaderFiles>true</noHeaderFiles>
+                  <options>
+                    <!-- For getting the native window handle (WindowUtils.getNativeHandleForStage method) -->
+                    <option>--add-opens</option>
+                    <option>javafx.graphics/javafx.stage=com.pixelduke.fxthemes</option>
+                    <option>--add-exports</option>
+                    <option>javafx.graphics/com.sun.javafx.tk.quantum=com.pixelduke.fxthemes</option>
+                    <option>--add-exports</option>
+                    <option>javafx.graphics/com.sun.glass.ui=com.pixelduke.fxthemes</option>
+                  </options>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>
@@ -92,7 +141,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.pixelduke.samples.window.Windows11BackdropSample</mainClass>
+              <mainClass>com.pixelduke.samples.window.DarkThemeSample</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
@@ -101,12 +150,14 @@
               <noHeaderFiles>true</noHeaderFiles>
               <options>
                 <!-- So that changing the background of a native Window works well (at least on some machines using win11) -->
-                <option>-Dprism.forceUploadingPainter=true</option>
+                <option>-Dprism.forceUploadingPainter=${forceUploadingPainter}</option>
                 <!-- For getting the native window handle (WindowUtils.getNativeHandleForStage method) -->
                 <option>--add-opens</option>
                 <option>javafx.graphics/javafx.stage=com.pixelduke.fxthemes</option>
                 <option>--add-exports</option>
                 <option>javafx.graphics/com.sun.javafx.tk.quantum=com.pixelduke.fxthemes</option>
+                <option>--add-exports</option>
+                <option>javafx.graphics/com.sun.glass.ui=com.pixelduke.fxthemes</option>
               </options>
             </configuration>
           </execution>

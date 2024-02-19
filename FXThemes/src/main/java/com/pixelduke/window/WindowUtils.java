@@ -1,5 +1,6 @@
 package com.pixelduke.window;
 
+import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.WinDef;
 import javafx.stage.Window;
@@ -19,6 +20,23 @@ public class WindowUtils {
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public static long getNativeHandleOfStageAsLong(Window stage) {
+        try {
+            final Method getPeer = Window.class.getDeclaredMethod("getPeer");
+            getPeer.setAccessible(true);
+            final Object tkStage = getPeer.invoke(stage);
+            final Method getPlatformWindow = tkStage.getClass().getMethod("getPlatformWindow");
+            final Object jfxWindow = getPlatformWindow.invoke(tkStage);
+            final Method getNativeWindow = jfxWindow.getClass().getMethod("getNativeWindow");
+            getNativeWindow.setAccessible(true);
+            Long ptr = (Long) getNativeWindow.invoke(jfxWindow);
+            return ptr;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0l;
         }
     }
 }
