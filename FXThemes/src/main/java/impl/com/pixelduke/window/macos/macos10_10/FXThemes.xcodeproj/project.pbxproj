@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		879793EC2B82EBEC00C1C1AF /* FXThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 879793EA2B82EBEC00C1C1AF /* FXThemes.h */; };
-		879793ED2B82EBEC00C1C1AF /* FXThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 879793EB2B82EBEC00C1C1AF /* FXThemes.m */; };
+		87EA74F52B87EFA500908E3C /* FXThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 87EA74F32B87EFA500908E3C /* FXThemes.h */; };
+		87EA74F62B87EFA500908E3C /* FXThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA74F42B87EFA500908E3C /* FXThemes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		879793DE2B82EA5B00C1C1AF /* libFXThemes.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFXThemes.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		879793EA2B82EBEC00C1C1AF /* FXThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXThemes.h; path = src/objectivec/implementation/FXThemes.h; sourceTree = "<group>"; };
-		879793EB2B82EBEC00C1C1AF /* FXThemes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXThemes.m; path = src/objectivec/implementation/FXThemes.m; sourceTree = "<group>"; };
+		87EA74F32B87EFA500908E3C /* FXThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXThemes.h; sourceTree = "<group>"; };
+		87EA74F42B87EFA500908E3C /* FXThemes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXThemes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,8 +31,8 @@
 		879793D52B82EA5B00C1C1AF = {
 			isa = PBXGroup;
 			children = (
-				879793EA2B82EBEC00C1C1AF /* FXThemes.h */,
-				879793EB2B82EBEC00C1C1AF /* FXThemes.m */,
+				87EA74F32B87EFA500908E3C /* FXThemes.h */,
+				87EA74F42B87EFA500908E3C /* FXThemes.m */,
 				879793DF2B82EA5B00C1C1AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,7 +52,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				879793EC2B82EBEC00C1C1AF /* FXThemes.h in Headers */,
+				87EA74F52B87EFA500908E3C /* FXThemes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +113,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				879793ED2B82EBEC00C1C1AF /* FXThemes.m in Sources */,
+				87EA74F62B87EFA500908E3C /* FXThemes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

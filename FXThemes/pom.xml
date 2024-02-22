@@ -56,6 +56,8 @@
             <configuration>
               <executable>xcodebuild</executable>
               <arguments>
+                <argument>-project</argument>
+                <argument>src/main/java/impl/com/pixelduke/window/macos/macos10_10/FXThemes.xcodeproj</argument>
                 <argument>-scheme</argument>
                 <argument>FXThemes</argument>
                 <argument>-configuration</argument>
