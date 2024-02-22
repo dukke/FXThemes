@@ -42,5 +42,6 @@ target/
 
 # Mac
 .DS_Store
-**/xcuserdata/
+xcuserdata/
 **/xcuserdata/*
+FXThemes/src/main/java/impl/com/pixelduke/window/macos/macos10_10/FXThemes.xcodeproj/project.xcworkspace/xcuserdata/
