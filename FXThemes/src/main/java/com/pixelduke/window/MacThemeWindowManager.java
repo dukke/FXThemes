@@ -19,34 +19,16 @@ public class MacThemeWindowManager implements ThemeWindowManager {
         NSAppearanceNameVibrantLight,
         NSAppearanceNameVibrantDark
     }
-    //static Pointer initWithBytesLengthEncodingSel = FoundationLibrary.INSTANCE.sel_registerName("initWithBytes:length:encoding:");
     @Override
     public void setDarkModeForWindowFrame(Window window, boolean darkMode) {
-        long windowPtr = WindowUtils.getNativeHandleOfStageAsLong(window);
-        NativeLong nsWindow = new NativeLong(windowPtr);
+        NativeLong nsWindow = WindowUtils.getNativeHandleOfStageAsNativeLong(window);
         String nativeAppearanceName = darkMode ? "NSAppearanceNameDarkAqua" : "NSAppearanceNameAqua";
         FXThemesLibrary.INSTANCE.setAppearanceByName(nsWindow, FXThemesLibrary.fromJavaString(nativeAppearanceName));
     }
 
     public void setWindowFrameAppearance(Window window, Backdrop backdrop) {
-        long windowPtr = WindowUtils.getNativeHandleOfStageAsLong(window);
-        NativeLong nsWindow = new NativeLong(windowPtr);
-
+        NativeLong nsWindow = WindowUtils.getNativeHandleOfStageAsNativeLong(window);
         FXThemesLibrary.INSTANCE.setAppearanceByName(nsWindow, FXThemesLibrary.fromJavaString(backdrop.toString()));
-    }
-    public static NativeLong getNativeHandleOfStage(Window stage) {
-        try {
-            final Method getPeer = Window.class.getDeclaredMethod("getPeer");
-            getPeer.setAccessible(true);
-            final Object tkStage = getPeer.invoke(stage);
-            final Method getRawHandle = tkStage.getClass().getMethod("getRawHandle");
-            getRawHandle.setAccessible(true);
-            NativeLong nativeLong = new NativeLong((Long) getRawHandle.invoke(tkStage));
-            return nativeLong;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
     }
 }
 

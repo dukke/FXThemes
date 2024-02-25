@@ -109,8 +109,6 @@
                     <option>javafx.graphics/javafx.stage=com.pixelduke.fxthemes</option>
                     <option>--add-exports</option>
                     <option>javafx.graphics/com.sun.javafx.tk.quantum=com.pixelduke.fxthemes</option>
-                    <option>--add-exports</option>
-                    <option>javafx.graphics/com.sun.glass.ui=com.pixelduke.fxthemes</option>
                   </options>
                 </configuration>
               </execution>

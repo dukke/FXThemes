@@ -1,6 +1,7 @@
 package com.pixelduke.window;
 
 import com.sun.jna.Platform;
+import javafx.stage.Window;
 
 public abstract class ThemeWindowManagerFactory {
     public static ThemeWindowManager create() {
@@ -17,7 +18,11 @@ public abstract class ThemeWindowManagerFactory {
         } else if (Platform.isLinux()) {
             return new LinuxThemeWindowManager();
         } else {
-            throw new RuntimeException("Unsupported Window Operating System");
+            return new ThemeWindowManager(){
+                public void setDarkModeForWindowFrame(Window window, boolean darkMode){
+                    System.out.println("Warning: Unsupported Window Operating System");
+                }
+            };
         }
     }
 }
