@@ -21,6 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * This version will showcase Mac Specific background blur behavior.
+ * Two of the following to ensure the blur will take effect in JavaFX stage window.
+ * <pre>
+ *     Note 1: Must use UNIFIED style for effect to work.
+ *              stage.initStyle(StageStyle.UNIFIED);
+ *     Note 2: Must use a transparent fill of the scene & root pane's background's alpha channel to work.
+ *              scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+ *              scene.getRoot().setStyle("-fx-background-color: rgba(255, 255, 255, 0.2);");
+ * </pre>
+ */
 public class DarkThemeSampleMac extends Application {
 
     private final String darkModeOnLabel = "Switch to Dark mode";
