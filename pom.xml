@@ -16,6 +16,5 @@
     <module>FXThemes</module>
     <module>FXThemes-samples</module>
   </modules>
-
   <packaging>pom</packaging>
 </project>
