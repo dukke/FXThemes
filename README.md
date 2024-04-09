@@ -47,7 +47,7 @@ To run the demos,  enter the following command in the Command Prompt / Terminal,
 ```
 mvn javafx:run -f fxthemes-samples/pom.xml
 ```
-To choose which of the demos to run, change the "pom.xml" script file inside "FXThemes-samples" folder and replace the 
+To choose which demo to run, change the "pom.xml" script file inside "FXThemes-samples" folder and replace the 
 contents of the `<mainClass>` xml tag with the name of the Application derived class you'd like to execute.
 
 ## Pull Requests (PR)
