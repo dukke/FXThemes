@@ -29,10 +29,18 @@ implementation 'com.pixelduke:FXThemes:1.0.0'
 ```
 
 ## Source code
+As of the time of writing of this documentation the code is being compiled on Java 21 and JavaFX 21. These Java and JavaFX
+versions may be updated in the future.
+
 The FXThemes-samples subproject has samples that you can run and check out how to use FXThemes.
 
-As of the time of writing of this documentation the code is being compiled on Java 21 and JavaFX 21. These Java and JavaFX 
-versions may be updated in the future. 
+## Running the sample demos
+To run the demos,  enter the following command in the Command Prompt / Terminal, inside the project directory:
+```
+mvn javafx:run -f fxthemes-samples/pom.xml
+```
+To choose which of the demos to run, change the "pom.xml" script file inside "FXThemes-samples" folder and replace the 
+contents of the `<mainClass>` xml tag with the name of the Application derived class you'd like to execute.
 
 ## Pull Requests (PR)
 We welcome contributions via PR.  
