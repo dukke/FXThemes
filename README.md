@@ -1,8 +1,16 @@
 # FXThemes
 Utility classes for advanced Theme development for JavaFX (Java)
 
+- Set a background blur effect on a JavaFX Window  
+
 ![Acrylic Backdrop](Acrylic.jpg)
+
+- Set dark or light window decorations  
+
 ![True dark mode](DarkMode.jpg)
+
+- Fully customize a Window frame color, text color and border  
+
 ![Changing Window Frame colors](WindowFrameColors.jpg)
 
 ## Documentation
