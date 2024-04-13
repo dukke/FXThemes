@@ -12,10 +12,10 @@ jobs:
               distribution: 'zulu'
         - name: Build with Maven
           run: mvn --batch-mode --update-snapshots verify
-        - run: mkdir staging && cp target/*.jar staging
+        - run: mkdir fxthemes/staging && cp fxthemes/target/*.jar fxthemes/staging
         - uses: actions/upload-artifact@v4
           with:
               name: FXThemes
-              path: staging
+              path: fxthemes/staging
 
 
