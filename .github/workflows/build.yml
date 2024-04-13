@@ -2,7 +2,7 @@ name: fxthemes-actions
 on: [push, pull_request]
 jobs:
     build:
-      runs-on: macos-latest-large # mac os (inter cpu)
+      runs-on: macos-latest # mac os (M1 cpu)
       steps:
         - uses: actions/checkout@v4
         - name: Set up JDK 17
