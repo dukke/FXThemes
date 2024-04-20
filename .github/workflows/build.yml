@@ -17,8 +17,8 @@ jobs:
           with:
               name: FXThemes-mac-m1
               path: fxthemes/staging
-    build-mac-intel:
-      runs-on: macos-13 # mac os (Intel cpu)
+    build-windows:
+      runs-on: windows-latest # windows
       steps:
         - uses: actions/checkout@v4
         - name: Set up JDK 17
@@ -31,7 +31,7 @@ jobs:
         - run: mkdir fxthemes/staging && cp fxthemes/target/*.jar fxthemes/staging
         - uses: actions/upload-artifact@v4
           with:
-            name: FXThemes-mac-intel
+            name: FXThemes-windows
             path: fxthemes/staging
 
 
