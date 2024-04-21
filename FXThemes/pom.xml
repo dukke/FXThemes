@@ -14,15 +14,6 @@
   </parent>
 
   <artifactId>fxthemes</artifactId>
-  <version>1.2.0</version>
-
-  <description>This is a library that contains classes to help in theme development.</description>
-  <name>fxthemes</name>
-  <url>https://pixelduke.com/fxthemes/</url>
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/dukke/FXThemes/issues</url>
-  </issueManagement>
 
   <profiles>
     <!-- MacOS X compiling step -->
@@ -76,27 +67,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <xcodeScheme>Debug</xcodeScheme>
   </properties>
-
-  <licenses>
-    <license>
-      <name>GNU General Public License, version 2, with the Classpath Exception</name>
-      <url>https://openjdk.java.net/legal/gplv2+ce.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-
-  <scm>
-    <url>https://github.com/dukke/FXThemes.git</url>
-  </scm>
-
-  <developers>
-    <developer>
-      <name>Pedro Duque Vieira</name>
-    </developer>
-    <developer>
-      <name>Carl Dea</name>
-    </developer>
-  </developers>
 
   <build>
     <plugins>
@@ -161,6 +131,7 @@
   </build>
 
   <dependencies>
+    <!-- JavaFX -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics</artifactId>
@@ -171,6 +142,7 @@
       <artifactId>javafx-controls</artifactId>
       <version>21</version>
     </dependency>
+    <!-- JNA -->
     <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna</artifactId>

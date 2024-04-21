@@ -12,6 +12,36 @@
   <artifactId>parent-fxthemes</artifactId>
   <version>1.2.0</version>
 
+  <url>https://pixelduke.com/fxthemes/</url>
+
+  <description>This is a library that contains classes to help in theme development.</description>
+  <name>fxthemes</name>
+
+  <developers>
+    <developer>
+      <name>Pedro Duque Vieira</name>
+    </developer>
+    <developer>
+      <name>Carl Dea</name>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>GNU General Public License, version 2, with the Classpath Exception</name>
+      <url>https://openjdk.java.net/legal/gplv2+ce.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/dukke/FXThemes.git</url>
+  </scm>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/dukke/FXThemes/issues</url>
+  </issueManagement>
+
   <modules>
     <module>FXThemes</module>
     <module>FXThemes-samples</module>
