@@ -15,8 +15,10 @@
 
   <artifactId>fxthemes</artifactId>
 
+  <!-- *****************************************************************************************-->
+  <!--                                  MacOS X compiling step                                  -->
+  <!-- *****************************************************************************************-->
   <profiles>
-    <!-- MacOS X compiling step -->
     <profile>
       <id>mac</id>
       <activation>
@@ -63,6 +65,7 @@
     </profile>
   </profiles>
 
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <xcodeScheme>Debug</xcodeScheme>
@@ -70,6 +73,78 @@
 
   <build>
     <plugins>
+
+      <!-- Attach sources -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <attach>true</attach>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Attach javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <attach>true</attach>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Sign -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Nexus Staging (uploading) -->
+<!--      <plugin>-->
+<!--        <groupId>org.sonatype.plugins</groupId>-->
+<!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--        <version>1.6.8</version>-->
+<!--        <extensions>true</extensions>-->
+<!--        <configuration>-->
+<!--          <serverId>central</serverId>-->
+<!--          <nexusUrl>https://oss.sonatype.org</nexusUrl>-->
+<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -154,5 +229,21 @@
       <version>5.13.0</version>
     </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+  <scm>
+    <connection>scm:git:https://github.com/dukke/FXThemes.git</connection>
+    <developerConnection>scm:git:ssh://github.com/dukke/FXThemes.git</developerConnection>
+    <url>https://github.com/dukke/FXThemes</url>
+  </scm>
 
 </project>
