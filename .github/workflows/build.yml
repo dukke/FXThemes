@@ -19,17 +19,17 @@ jobs:
               gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
         - name: Build and Deploy with Maven
-          run: mvn --batch-mode --update-snapshots clean deploy -pl fxthemes
+          run: mvn --batch-mode --update-snapshots clean deploy -pl FXThemes
           env:
             MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
             MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
             MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-        - run: mkdir fxthemes/staging && cp fxthemes/target/*.jar fxthemes/staging
+        - run: mkdir FXThemes/staging && cp FXThemes/target/*.jar FXThemes/staging
         - uses: actions/upload-artifact@v4
           with:
               name: FXThemes-mac-m1
-              path: fxthemes/staging
+              path: FXThemes/staging
 
     build-windows:
       runs-on: windows-latest # windows
@@ -49,16 +49,16 @@ jobs:
             gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
         - name: Build and Deploy with Maven
-          run: mvn --batch-mode --update-snapshots clean deploy -pl fxthemes
+          run: mvn --batch-mode --update-snapshots clean deploy -pl FXThemes
           env:
             MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
             MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
             MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-        - run: mkdir fxthemes/staging && cp fxthemes/target/*.jar fxthemes/staging
+        - run: mkdir FXThemes/staging && cp FXThemes/target/*.jar FXThemes/staging
         - uses: actions/upload-artifact@v4
           with:
             name: FXThemes-windows
-            path: fxthemes/staging
+            path: FXThemes/staging
 
 
