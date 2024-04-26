@@ -15,10 +15,11 @@
 
   <artifactId>fxthemes</artifactId>
 
-  <!-- *****************************************************************************************-->
-  <!--                                  MacOS X compiling step                                  -->
-  <!-- *****************************************************************************************-->
   <profiles>
+
+    <!-- *****************************************************************************************-->
+    <!--                                       MacOS                                              -->
+    <!-- *****************************************************************************************-->
     <profile>
       <id>mac</id>
       <activation>
@@ -60,11 +61,44 @@
               </arguments>
             </configuration>
           </plugin>
+          <!-- Jar plugin - output Jar configuration of "Mac" -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+              <classifier>mac</classifier>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- *****************************************************************************************-->
+    <!--                                       Windows                                            -->
+    <!-- *****************************************************************************************-->
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Jar plugin - output Jar configuration of "Windows" -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+              <classifier>win</classifier>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -73,7 +107,6 @@
 
   <build>
     <plugins>
-
       <!-- Attach sources -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -152,11 +185,6 @@
         <configuration>
           <release>17</release>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.3.0</version>
       </plugin>
       <!-- display active profile in compile phase -->
       <plugin>
