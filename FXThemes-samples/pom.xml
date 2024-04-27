@@ -10,7 +10,7 @@
   <parent>
     <groupId>com.pixelduke</groupId>
     <artifactId>parent-fxthemes</artifactId>
-    <version>1.2.0</version>
+    <version>1.5.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -26,7 +26,8 @@
     <dependency>
       <groupId>com.pixelduke</groupId>
       <artifactId>fxthemes</artifactId>
-      <version>1.2.0</version>
+      <version>1.5.0</version>
+      <classifier>win</classifier>
     </dependency>
     <!-- JavaFX -->
     <dependency>
