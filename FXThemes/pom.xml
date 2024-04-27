@@ -29,7 +29,6 @@
       </activation>
       <properties>
         <xcodeScheme>Debug</xcodeScheme>
-        <my.property>running.on.mac</my.property>
         <fxthemes.platform>mac</fxthemes.platform>
       </properties>
       <build>
@@ -85,7 +84,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <xcodeScheme>Debug</xcodeScheme>
   </properties>
 
   <build>
@@ -148,19 +146,7 @@
         </executions>
       </plugin>
 
-      <!-- Nexus Staging (uploading) -->
-<!--      <plugin>-->
-<!--        <groupId>org.sonatype.plugins</groupId>-->
-<!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--        <version>1.6.8</version>-->
-<!--        <extensions>true</extensions>-->
-<!--        <configuration>-->
-<!--          <serverId>central</serverId>-->
-<!--          <nexusUrl>https://oss.sonatype.org</nexusUrl>-->
-<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
-
+      <!-- Maven compiler plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -179,6 +165,7 @@
           <classifier>${fxthemes.platform}</classifier>
         </configuration>
       </plugin>
+
       <!-- display active profile in compile phase -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -194,17 +181,14 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
-      </plugin>
+
       <!-- Install plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
         <version>2.5.2</version>
       </plugin>
+
       <!-- Deploy plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -212,30 +196,6 @@
         <version>2.8.2</version>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.6.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.6.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.3.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
 
   <dependencies>
@@ -273,6 +233,7 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
   </distributionManagement>
+
   <scm>
     <connection>scm:git:https://github.com/dukke/FXThemes.git</connection>
     <developerConnection>scm:git:ssh://github.com/dukke/FXThemes.git</developerConnection>
