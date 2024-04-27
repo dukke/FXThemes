@@ -30,6 +30,7 @@
       <properties>
         <xcodeScheme>Debug</xcodeScheme>
         <my.property>running.on.mac</my.property>
+        <fxthemes.platform>mac</fxthemes.platform>
       </properties>
       <build>
         <plugins>
@@ -62,14 +63,6 @@
             </configuration>
           </plugin>
           <!-- Jar plugin - output Jar configuration of "Mac" -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.3.0</version>
-            <configuration>
-              <classifier>mac</classifier>
-            </configuration>
-          </plugin>
         </plugins>
       </build>
     </profile>
@@ -84,19 +77,9 @@
           <family>windows</family>
         </os>
       </activation>
-      <build>
-        <plugins>
-          <!-- Jar plugin - output Jar configuration of "Windows" -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.3.0</version>
-            <configuration>
-              <classifier>win</classifier>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <fxthemes.platform>win</fxthemes.platform>
+      </properties>
     </profile>
   </profiles>
 
@@ -184,6 +167,16 @@
         <version>3.11.0</version>
         <configuration>
           <release>17</release>
+        </configuration>
+      </plugin>
+
+      <!-- Jar plugin - output Jar configuration -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <classifier>${fxthemes.platform}</classifier>
         </configuration>
       </plugin>
       <!-- display active profile in compile phase -->
