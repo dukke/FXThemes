@@ -29,7 +29,6 @@
       </activation>
       <properties>
         <xcodeScheme>Debug</xcodeScheme>
-        <fxthemes.platform>mac</fxthemes.platform>
       </properties>
       <build>
         <plugins>
@@ -64,21 +63,6 @@
           <!-- Jar plugin - output Jar configuration of "Mac" -->
         </plugins>
       </build>
-    </profile>
-
-    <!-- *****************************************************************************************-->
-    <!--                                       Windows                                            -->
-    <!-- *****************************************************************************************-->
-    <profile>
-      <id>windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <fxthemes.platform>win</fxthemes.platform>
-      </properties>
     </profile>
   </profiles>
 
@@ -156,16 +140,6 @@
         </configuration>
       </plugin>
 
-      <!-- Jar plugin - output Jar configuration -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <classifier>${fxthemes.platform}</classifier>
-        </configuration>
-      </plugin>
-
       <!-- display active profile in compile phase -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -180,20 +154,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-
-      <!-- Install plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-      </plugin>
-
-      <!-- Deploy plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
       </plugin>
     </plugins>
   </build>
