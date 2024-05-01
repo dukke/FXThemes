@@ -32,6 +32,7 @@ public class DarkThemeSample extends Application {
 
         Scene scene = new Scene(root, 400, 200);
 
+        // TransitTheme is just used here for aesthetic purposes. Not necessary for this sample
         TransitTheme transitTheme = new TransitTheme(Style.LIGHT);
         transitTheme.setScene(scene);
 
