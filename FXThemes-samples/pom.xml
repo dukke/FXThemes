@@ -28,8 +28,7 @@
     <dependency>
       <groupId>com.pixelduke</groupId>
       <artifactId>fxthemes</artifactId>
-      <version>1.5.0</version>
-      <classifier>win</classifier>
+      <version>1.5.1</version>
     </dependency>
     <!-- JavaFX -->
     <dependency>
