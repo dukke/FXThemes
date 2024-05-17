@@ -9,7 +9,7 @@
   <parent>
     <groupId>com.pixelduke</groupId>
     <artifactId>parent-fxthemes</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -17,9 +17,9 @@
 
   <profiles>
 
-    <!-- *****************************************************************************************-->
-    <!--                                       MacOS                                              -->
-    <!-- *****************************************************************************************-->
+    <!-- *********************************************************************-->
+    <!--                            MacOS                                     -->
+    <!-- *********************************************************************-->
     <profile>
       <id>mac</id>
       <activation>
@@ -182,22 +182,4 @@
       <version>5.13.0</version>
     </dependency>
   </dependencies>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
-
-  <scm>
-    <connection>scm:git:https://github.com/dukke/FXThemes.git</connection>
-    <developerConnection>scm:git:ssh://github.com/dukke/FXThemes.git</developerConnection>
-    <url>https://github.com/dukke/FXThemes</url>
-  </scm>
-
 </project>

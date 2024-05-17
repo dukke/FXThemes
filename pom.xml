@@ -10,7 +10,7 @@
 
   <groupId>com.pixelduke</groupId>
   <artifactId>parent-fxthemes</artifactId>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
 
   <url>https://pixelduke.com/fxthemes/</url>
 
@@ -35,8 +35,11 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/dukke/FXThemes.git</url>
+    <connection>scm:git:https://github.com/dukke/FXThemes.git</connection>
+    <developerConnection>scm:git:ssh://github.com/dukke/FXThemes.git</developerConnection>
+    <url>https://github.com/dukke/FXThemes</url>
   </scm>
+
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/dukke/FXThemes/issues</url>
@@ -47,4 +50,16 @@
     <module>FXThemes-samples</module>
   </modules>
   <packaging>pom</packaging>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+
 </project>
