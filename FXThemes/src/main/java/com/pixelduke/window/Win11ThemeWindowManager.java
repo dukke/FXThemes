@@ -1,10 +1,7 @@
 package com.pixelduke.window;
 
 import com.sun.jna.platform.win32.WinDef;
-import impl.com.pixelduke.window.win32.windows11.DWM;
-import impl.com.pixelduke.window.win32.windows11.DWMA_WINDOW_ATTRIBUTE;
-import impl.com.pixelduke.window.win32.windows11.DWM_SYSTEMBACKDROP_TYPE;
-import impl.com.pixelduke.window.win32.windows11.DwmSupport;
+import impl.com.pixelduke.window.win32.windows11.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
 
@@ -17,6 +14,12 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
         ACRYLIC
     }
 
+    public enum CornerPreference {
+        RECTANGULAR,
+        ROUND,
+        ROUND_SMALL
+    }
+
     public void setDarkModeForWindowFrame(Window window, boolean darkMode) {
         DWM.setWindowAttribute(
                 WindowUtils.getNativeHandleOfStage(window),
@@ -25,7 +28,7 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
         );
     }
 
-    public void setWindowBorderColor(Window window, Color color) {
+   public void setWindowBorderColor(Window window, Color color) {
         DWM.setWindowAttribute(
                 WindowUtils.getNativeHandleOfStage(window),
                 DWMA_WINDOW_ATTRIBUTE.DWMWA_BORDER_COLOR.getValue(),
@@ -74,6 +77,29 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
                                 new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.ACRYLIC.getValue())),
                                 WinDef.DWORD.SIZE
                             );
+        }
+    }
+
+    public void setWindowCornerPreference(Window window, CornerPreference cornerPreference) {
+        switch (cornerPreference) {
+            case RECTANGULAR -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    WindowUtils.getNativeHandleOfStage(window),
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_CORNER_PREFERENCE.RECTANGULAR.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+            case ROUND -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    WindowUtils.getNativeHandleOfStage(window),
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_CORNER_PREFERENCE.ROUND.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+            case ROUND_SMALL -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    WindowUtils.getNativeHandleOfStage(window),
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_CORNER_PREFERENCE.ROUND_SMALL.getValue())),
+                    WinDef.DWORD.SIZE
+            );
         }
     }
 
