@@ -28,7 +28,38 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
         );
     }
 
-   public void setWindowBorderColor(Window window, Color color) {
+    /**     BELOW STILL NOT WORKING
+    public void setWindowIconVisible(Stage window, boolean isVisible) {
+
+        NativeLong windowStyle = new NativeLong(0x00000001L);
+//        User32Support.INSTANCE.SetWindowLongPtrA(
+//            WindowUtils.getNativeHandleOfStage(window),
+//            GWL_EXSTYLE,
+//            windowStyle
+//        );
+
+        BaseTSD.LONG_PTR style = User32.INSTANCE.GetWindowLongPtr(WindowUtils.getNativeHandleOfStage(window), GWL_EXSTYLE);
+
+        Pointer pointer = new WinDef.LONGByReference(new WinDef.LONG(0x00000001L)).getPointer();
+
+        User32.INSTANCE.SetWindowLongPtr(
+                WindowUtils.getNativeHandleOfStage(window),
+                GWL_EXSTYLE,
+                pointer);
+
+        User32.INSTANCE.SetWindowPos(WindowUtils.getNativeHandleOfStage(window),
+                null,
+                0,
+                0,
+                0,
+                0,
+                SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
+
+        window.setResizable(true);
+
+    } **/
+
+    public void setWindowBorderColor(Window window, Color color) {
         DWM.setWindowAttribute(
                 WindowUtils.getNativeHandleOfStage(window),
                 DWMA_WINDOW_ATTRIBUTE.DWMWA_BORDER_COLOR.getValue(),
@@ -102,6 +133,49 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
             );
         }
     }
+
+    /**        BELOW STILL NOT WORKING
+    public void setWindowBackdrop(Dialog dialog, Backdrop backdrop) {
+        Stage dialogStage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        String tempTitle = "XYUZADCSD";
+        String dialogTitle = dialogStage.getTitle();
+        dialogStage.setTitle(tempTitle);
+        WinDef.HWND hWnd = User32.INSTANCE.FindWindow(null, tempTitle);
+        dialogStage.setTitle(dialogTitle);
+
+        switch (backdrop) {
+            case NONE -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    hWnd,
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.NONE.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+            case MICA -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    hWnd,
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.MICA.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+            case MICA_ALT -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    hWnd,
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.MICA_ALT.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+            case ACRYLIC -> DwmSupport.INSTANCE.DwmSetWindowAttribute(
+                    hWnd,
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE.getValue(),
+                    new WinDef.DWORDByReference(new WinDef.DWORD(DWM_SYSTEMBACKDROP_TYPE.ACRYLIC.getValue())),
+                    WinDef.DWORD.SIZE
+            );
+        }
+
+        DWM.setWindowAttribute(
+                hWnd,
+                DWMA_WINDOW_ATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE.getValue(),
+                true
+        );
+    } **/
 
     private int toRGBInt(final Color color) {
         return (doubleTo8Bit(color.getBlue()) << 16)
