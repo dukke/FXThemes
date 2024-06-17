@@ -111,6 +111,13 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
         }
     }
 
+    /**
+     * Sets the "roundness" of the corners of the window according to the passed in CornerPreference.
+     * Setting the corners of a transparent or undecorated Stage to be round will also make it display native window decorations (drop shadows, etc).
+     *
+     * @param window the window which you want to change
+     * @param cornerPreference the corner preference of the window
+     */
     public void setWindowCornerPreference(Window window, CornerPreference cornerPreference) {
         switch (cornerPreference) {
             case RECTANGULAR -> DwmSupport.INSTANCE.DwmSetWindowAttribute(

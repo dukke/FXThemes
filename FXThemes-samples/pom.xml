@@ -111,7 +111,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.pixelduke.samples.fxthemes/com.pixelduke.samples.window.Windows11CornerSample</mainClass>
+              <mainClass>com.pixelduke.samples.fxthemes/com.pixelduke.samples.window.TransparentStageNativeDecorations</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
