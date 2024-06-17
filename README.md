@@ -24,15 +24,15 @@ Here are examples for Gradle and Maven (replace version number with the version 
 
 #### Gradle
 ```groovy
-implementation 'com.pixelduke:FXThemes:1.0.0'
+implementation 'com.pixelduke:fxthemes:1.5.1'
 ```
 
 #### Maven
 ```xml
 <dependency>
     <groupId>com.pixelduke</groupId>
-    <artifactId>FXThemes</artifactId>
-    <version>1.0.0</version>
+    <artifactId>fxthemes</artifactId>
+    <version>1.5.1</version>
 </dependency>
 ```
 
