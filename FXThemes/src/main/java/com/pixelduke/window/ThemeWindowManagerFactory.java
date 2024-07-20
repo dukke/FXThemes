@@ -42,6 +42,7 @@ public abstract class ThemeWindowManagerFactory {
         try{
             version = Integer.parseInt(System.getProperty("os.version").split("\\.")[0]);
         }catch (Exception e){
+            System.err.println("Failed to obtain the major version of the Operating System!");
             e.printStackTrace();
         }
         return version;
