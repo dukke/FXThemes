@@ -1,21 +1,19 @@
 package com.pixelduke.window;
 
 import com.sun.jna.Platform;
-import javafx.stage.Window;
 
 public abstract class ThemeWindowManagerFactory {
-    
+
     public static ThemeWindowManager create() {
         String osName = System.getProperty("os.name");
-        int majorVersion = getMajorVersion();
-        
+
         // Check which operating system and version we're running and return appropriate ThemeWindowManager
-        switch(Platform.getOSType()){
+        switch (Platform.getOSType()) {
             case Platform.WINDOWS:
-                switch(majorVersion){
-                    case 10:
+                switch (osName) {
+                    case "Windows 10":
                         return new Win10ThemeWindowManager();
-                    case 11:
+                    case "Windows 11":
                         return new Win11ThemeWindowManager();
                     default:
                         break;
@@ -28,23 +26,7 @@ public abstract class ThemeWindowManagerFactory {
             default:
                 break;
         }
-        
-        return new ThemeWindowManager(){
-            public void setDarkModeForWindowFrame(Window window, boolean darkMode){
-                System.out.println("Warning: Unsupported Window Operating System");
-            }
-        };
-    }
 
-    private static int getMajorVersion(){
-        int version = -1;
-        
-        try{
-            version = Integer.parseInt(System.getProperty("os.version").split("\\.")[0]);
-        }catch (Exception e){
-            System.err.println("Failed to obtain the major version of the Operating System!");
-            e.printStackTrace();
-        }
-        return version;
+        throw new RuntimeException("Unsupported Window Operating System");
     }
 }
