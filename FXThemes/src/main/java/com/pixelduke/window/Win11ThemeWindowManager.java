@@ -21,11 +21,19 @@ public class Win11ThemeWindowManager implements ThemeWindowManager {
     }
 
     public void setDarkModeForWindowFrame(Window window, boolean darkMode) {
-        DWM.setWindowAttribute(
+        if (window.isShowing()) {
+            DWM.setWindowAttribute(
+                    WindowUtils.getNativeHandleOfStage(window),
+                    DWMA_WINDOW_ATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE.getValue(),
+                    darkMode
+            );
+            return;
+        }
+        window.setOnShown(event -> DWM.setWindowAttribute(
                 WindowUtils.getNativeHandleOfStage(window),
                 DWMA_WINDOW_ATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE.getValue(),
                 darkMode
-        );
+        ));
     }
 
     /**     BELOW STILL NOT WORKING
